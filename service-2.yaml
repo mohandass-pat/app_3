@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-5
+  labels:
+    app: node-app-5
+    service: node-app-5
+spec:
+  ports:
+  - port: 4000
+    name: http
+  selector:
+    app: node-app-5

@@ -13,6 +13,21 @@ config :app_3, App3Web.Endpoint,
   check_origin: false,
   watchers: []
 
+config :libcluster,
+  topologies: [
+    kandula_settings: [
+      strategy: Elixir.Cluster.Strategy.Kubernetes.DNSSRV,
+      config: [
+        service: "node-app-4",
+        namespace: "default",
+        application_name: "node-app-4",
+        polling_interval: 10_000
+      ],
+      connect: {:net_kernel, :connect_node, []},
+      disconnect: {:erlang, :disconnect_node, []},
+      list_nodes: {:erlang, :nodes, [:connected]}
+    ]
+  ]
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

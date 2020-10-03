@@ -6,13 +6,18 @@ defmodule App3.Application do
   use Application
 
   def start(_type, _args) do
+
+    topologies = Application.get_env(:libcluster, :topologies)
+
     children = [
       # Start the Telemetry supervisor
       App3Web.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: App3.PubSub},
       # Start the Endpoint (http/https)
-      App3Web.Endpoint
+      App3Web.Endpoint,
+
+      {Cluster.Supervisor, [topologies, [name: Settings.ClusterSupervisor]]}
       # Start a worker by calling: App3.Worker.start_link(arg)
       # {App3.Worker, arg}
     ]

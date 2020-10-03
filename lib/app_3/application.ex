@@ -9,7 +9,7 @@ defmodule App3.Application do
 
     {:ok, host} = :inet.gethostname
 
-    Node.start(:"t@#{host}")
+    Node.start(:"node-app-4@#{host}")
 
     topologies = Application.get_env(:libcluster, :topologies)
 

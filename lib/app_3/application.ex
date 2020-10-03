@@ -7,6 +7,10 @@ defmodule App3.Application do
 
   def start(_type, _args) do
 
+    {:ok, host} = :inet.gethostname
+
+    Node.start(:"t@#{host}")
+
     topologies = Application.get_env(:libcluster, :topologies)
 
     children = [

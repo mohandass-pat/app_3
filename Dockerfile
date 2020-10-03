@@ -1,19 +1,19 @@
 # Use an official Elixir runtime as a parent image
-FROM elixir:1.10.3
+FROM elixir:1.9
 
-RUN apt-get update && \
-  apt-get install -y postgresql-client
-
+# Create app directory and copy the Elixir projects into it
 RUN mkdir /app
 COPY . /app
 WORKDIR /app
 
-RUN chmod +x /app/build.sh
+RUN chmod +x /app/entrypoint.sh
 
 # Install hex package manager
 RUN mix local.rebar --force && \
         mix local.hex --force
 
-RUN /app/build.sh
+RUN mix deps.get
+# Compile the project
+RUN mix do compile
 
-CMD ["/app/_build/prod/rel/app_3/bin/app", "start"]
+CMD ["/app/entrypoint.sh"]

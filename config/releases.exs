@@ -4,9 +4,9 @@
 # remember to add this file to your .gitignore.
 import Config
 
-secret_key_base = "hahvdhdhvdhvdhdvbvxvsgucvugvcuigevcuigvusigvcgdsvcbhbih"
+secret_key_base = "+8AOu0HX4HAfvETAbqlWjUz3J6O9koLNg82Blzfq2FaPut4bdExGu6LmapX2qBMu"
 
-config :settings, App3WebWeb.Endpoint,
+config :app_3, App3WebWeb.Endpoint,
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
@@ -19,7 +19,7 @@ config :settings, App3WebWeb.Endpoint,
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
 #
-config :settings, App3WebWeb.Endpoint, server: true
+config :app_3, App3WebWeb.Endpoint, server: true
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.
